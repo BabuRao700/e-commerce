@@ -1,5 +1,6 @@
 package com.ecommerce.orderservice.models;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,9 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "ADDRESS")
-public class Address {
-
+@Table(name = "BILLING_ADDRESS")
+public class BillingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "ID")
@@ -32,4 +32,7 @@ public class Address {
 
     @Column (name = "ZIP")
     private String zip;
+
+//    @OneToOne(mappedBy = "BILLING_ADDRESS")
+//    private Order order;
 }

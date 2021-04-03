@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Builder
 @NoArgsConstructor
@@ -25,11 +27,14 @@ public class Order {
     @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
-    @Column(name = "ITEM_NAME")
-    private String itemName;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Item> items;
 
-    @Column(name = "ITEM_QTY")
-    private Integer itemQty;
+//    @Column(name = "ITEM_NAME")
+//    private String itemName;
+//
+//    @Column(name = "ITEM_QTY")
+//    private Integer itemQty;
 
     @Column(name = "SUB_TOTAL")
     private Double subTotal;
@@ -53,8 +58,11 @@ public class Order {
     private String confirmationNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
-    private Address billingAddress;
+    @JoinColumn(name = "BILLING_ADDRESS_ID", referencedColumnName = "ID")
+    private BillingAddress billingAddress;
 
-//    private Address shippingAddress;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "SHIPPING_ADDRESS_ID", referencedColumnName = "ID")
+    private ShippingAddress shippingAddress;
+
 }
