@@ -3,6 +3,7 @@ package com.ecommerce.orderservice.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -30,12 +31,6 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Item> items;
 
-//    @Column(name = "ITEM_NAME")
-//    private String itemName;
-//
-//    @Column(name = "ITEM_QTY")
-//    private Integer itemQty;
-
     @Column(name = "SUB_TOTAL")
     private Double subTotal;
 
@@ -48,21 +43,19 @@ public class Order {
     @Column(name = "TOTAL")
     private Double total;
 
-    @Column(name = "PAYMENT_METHOD")
-    private String paymentMethod;
-
-    @Column(name = "PAYMENT_DATE")
-    private String paymentDate;
-
-    @Column(name = "CONFIRMATION_NUMBER")
-    private String confirmationNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "BILLING_ADDRESS_ID", referencedColumnName = "ID")
-    private BillingAddress billingAddress;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", referencedColumnName = "ID")
     private ShippingAddress shippingAddress;
 
+    @Column(name = "DELIVERY_METHOD")
+    private String deliveryMethod;
+
+    @Column(name = "CREATE_DATE")
+    private LocalDateTime createDate;
+
+    @Column(name = "UPDATE_DATE")
+    private LocalDateTime updatedDate;
 }
