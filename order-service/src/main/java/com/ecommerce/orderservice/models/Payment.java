@@ -25,6 +25,9 @@ public class Payment {
     @Column(name = "PAYMENT_DATE")
     private String paymentDate;
 
+    @Column(name = "PAYMENT_AMOUNT")
+    private String paymentAmount;
+
     @Column(name = "CONFIRMATION_NUMBER")
     private String confirmationNumber;
 

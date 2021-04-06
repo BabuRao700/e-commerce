@@ -33,6 +33,7 @@ public class OrderService {
                 .build();
     }
 
+    // should be soft delete
     public void cancelOrder(Order order) {
         this.orderRepository.delete(order);
     }
